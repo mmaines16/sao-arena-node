@@ -11,6 +11,10 @@ var userSchema = new Schema({
     type: String,
     unique: true,
   },
+  isAdmin: {
+    type: Boolean,
+    default: false
+  },
   profile: {
     characters: [
       {
