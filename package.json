@@ -1,0 +1,23 @@
+{
+  "name": "sao-arena",
+  "version": "1.0.0",
+  "description": "A turn based strategy game based on the Sword Art Online anime series",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server"
+  },
+  "author": "Mason Maines",
+  "license": "ISC",
+  "devDependencies": {
+    "express": "^4.14.0",
+    "express-hogan": "0.0.5",
+    "nodemon": "^1.10.2"
+  },
+  "dependencies": {
+    "express": "^4.14.0",
+    "express-handlebars": "^3.0.0",
+    "mongo": "^0.1.0",
+    "mongoose": "^4.6.1"
+  }
+}
