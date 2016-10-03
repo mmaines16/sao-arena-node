@@ -1,0 +1,52 @@
+<div class="row">
+  <div class="col-sm-offset-4 col-sm-4">
+    <div class="row">
+      <h2>Register</h2>
+    </div>
+    <div class="row">
+      <form action="" method="post">
+        <div id="emailGroup" class="form-group has-danger">
+          <label for="emailInput">Email address</label>
+          <input name="email" type="email" class="form-control {{#if error}} form-contorl-danger{{/if}}" id="emailInput" aria-describedby="emailHelp" placeholder="Email">
+          {{#if error}}
+            <div class="form-control-feedback">Sorry, that email's taken. Try another?</div>
+          {{/if}}
+          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+
+        <div id="usernameGroup" class="form-group has-danger">
+          <label for="usernameInput">Username</label>
+          <input name="username" type="text" class="form-control {{#if error}} form-contorl-danger{{/if}}" id="usernameInput" aria-describedby="usernameHelp" placeholder="Username">
+          {{#if error}}
+            <div class="form-control-feedback">Sorry, that username's taken. Try another?</div>
+          {{/if}}
+        </div>
+
+        <div id="passwordGroup" class="form-group">
+          <label for="passwordInput">Password</label>
+          <input name="password" type="password" class="form-control" id="passwordInput" placeholder="Password">
+        </div>
+
+        <div id="passwordConfirmGroup" class="form-group has-danger">
+          <label for="passwordConfirmInput">Confirm Password</label>
+          <input name="passwordConfirm" type="password" class="form-control {{#if error}} form-contorl-danger{{/if}}" id="passwordConfirmInput" placeholder="Confirm Password">
+          {{#if error}}
+            <div class="form-control-feedback">Sorry, these passwords do not match</div>
+          {{/if}}
+        </div>
+
+        <button type="submit" class="btn btn-block btn-primary">Register</button>
+      </form>
+    </div>
+
+  </div>
+</div>
+
+{{#if error}}
+<div class="error">
+  <h2>Error</h3>
+  <p>
+    <strong>{{message}}</strong>
+  </p>
+</div>
+{{/if}}

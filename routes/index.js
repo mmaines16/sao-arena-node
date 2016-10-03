@@ -1,14 +1,17 @@
 var express = require('express');
+var passport = require('../passport-config');
 var router = express.Router();
 
 
 router.get('/', function(req, res) {
+
+  console.log("req.isAuthenticated(): "+ req.isAuthenticated());
+  console.log("req.user: "+ req.user);
+
   res.render('index', {
     message: "Welcome to Sword Art Online Arena!",
-    isAuthenticated: false,
-    user: {
-      name: "Mason Maines",
-    }
+    isAuthenticated: req.isAuthenticated(),
+    user: req.user
   });
 });
 

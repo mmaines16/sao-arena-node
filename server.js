@@ -1,11 +1,17 @@
+var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
 var express = require('express');
 var exphbs = require('express-handlebars');
+var passport = require('./passport-config');
+var passportLocal = require('passport-local');
 var path = require('path');
 var mongoose = require('mongoose');
 var fs = require('fs');
+var session = require('express-session');
 
 //import Routes
 var indexRoutes = require('./routes/index');
+var accountRoutes = require('./routes/account');
 var apiRoutes = require('./routes/api');
 
 //import all mongoose models
@@ -26,6 +32,27 @@ server.use(express.static('public'));
 
 //Middleware Setup
 
+server.use(bodyParser.json());
+server.use(bodyParser.urlencoded({
+  extended: true
+}));
+server.use(cookieParser());
+
+console.log("Passport in server.js "+ passport);
+
+server.use(session({
+  secret: process.env.SESSION_SECRET || 'secret',
+  resave: false,
+  saveUninitialized: false
+}));
+
+
+//============ Configure Passport with Local Strategy ====================================
+server.use(passport.initialize());
+server.use(passport.session());
+
+
+//========================================================================================
 
 //Connect to mongodb database
 if('development' == server.get('env')){
@@ -35,6 +62,7 @@ if('development' == server.get('env')){
 //Configure Routes
 server.use('/', indexRoutes);
 server.use('/api', apiRoutes);
+server.use('/account', accountRoutes);
 
 
 //Start Listening for requests
