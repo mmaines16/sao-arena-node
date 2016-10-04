@@ -1,0 +1,1 @@
+{"_id":{"$oid":"57f4134681bd8482d3dce491"},"type":"energyList","list":[{"type":"Physical","color":"green"},{"type":"Skill","color":"red"},{"type":"Magic","color":"blue"},{"type":"Cardinal","color":"white"},{"type":"Random","color":"black"}]}

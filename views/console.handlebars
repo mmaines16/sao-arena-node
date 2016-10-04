@@ -14,6 +14,12 @@
         <span {{#if context.isSpecific}} class="breadcrumb-item active" {{else}} class="breadcrumb-item"{{/if}}>Specific Character</span>
         {{/if}}
       {{/if}}
+      {{#if context.isSkills}}
+        <a {{#if context.isSpecific}} class="breadcrumb-item" {{else}} class="breadcrumb-item active"{{/if}} href="/console/skills">Skills</a> {{#if context.isSpecific}}<span>/</span>{{/if}}
+        {{#if context.isSpecific}}
+        <span {{#if context.isSpecific}} class="breadcrumb-item active" {{else}} class="breadcrumb-item"{{/if}}>Specific Skill</span>
+        {{/if}}
+      {{/if}}
     </nav>
   </div>
 
@@ -27,21 +33,46 @@
           <ul>
             <li><a href="/console/users">Users</a></li>
             <li><a href="/console/characters">Characters</a></li>
+            <li><a href="/console/skills">Skills</a></li>
           </ul>
         </div>
       </div>
     </div>
 
     <div class="col-lg-10">
-      <div class="panel panel-info">
+      <div class="panel panel-info row">
         <div class="panel-heading">
           {{context.type}} {{#if isSpecific}}(specific view){{/if}}
         </div>
-        <div class="panel">
+        <div class="panel-body">
           {{#if context.isUsers}}
             {{#if context.isSpecific}}
               <div class="userEdit">
                 <h1>{{context.payload.username}}</h1>
+
+                <div class="row">
+                  <div class=" col-lg-10 col-sm-offset-1">
+                    <form class="userEditForm row well" action="" method="post">
+                      <div class="form-group">
+                        <label for="emailInput">Email</label>
+                        <input type="email" class="form-control" id="emailInput" name="email" value="{{context.payload.email}}">
+                      </div>
+
+                      <div class="form-group row">
+
+                        <label class="checkbox-inline"><input type="checkbox" name="isAdminCheckbox" {{#if context.payload.isAdmin}}checked{{/if}}>isAdmin</label>
+                        <label class="checkbox-inline"><input type="checkbox" name="isActiveCheckbox" {{#if context.payload.isActive}}checked{{/if}}>isActive</label>
+
+                      </div>
+
+                      <div class="form-group row">
+                        <button type="submit" class="btn btn-primary">Update User</button>
+                      </div>
+
+                    </form>
+                  </div>
+                </div>
+
               </div>
             {{else}}
               <ul>
@@ -53,6 +84,14 @@
           {{/if}}
 
           {{#if isCharacters}}
+            {{#if context.isSpecific}}
+              {{context.content.payload}}
+            {{else}}
+              {{context.content.payload}}
+            {{/if}}
+          {{/if}}
+
+          {{#if isSkills}}
             {{#if context.isSpecific}}
               {{context.content.payload}}
             {{else}}

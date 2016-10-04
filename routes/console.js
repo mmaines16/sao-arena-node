@@ -22,6 +22,7 @@ router.get('/', function(req, res) {
         isHome: true,
         isUsers: false,
         isCharacters: false,
+        isSkills: false,
         isSpecific: false
       },
     });
@@ -45,6 +46,7 @@ router.get('/users', function(req, res) {
       isHome: false,
       isUsers: true,
       isCharacters: false,
+      isSkills: false,
       isSpecific: false
     }
 
@@ -84,6 +86,7 @@ router.get('/users/:username', function(req, res) {
       isHome: false,
       isUsers: true,
       isCharacters: false,
+      isSkills: false,
       isSpecific: true,
     }
 
@@ -128,6 +131,7 @@ router.get('/characters', function(req, res) {
         isHome: false,
         isUsers: false,
         isCharacters: true,
+        isSkills: false,
         isSpecific: false
       },
     });
@@ -153,6 +157,60 @@ router.get('/characters/:characterId', function(req, res) {
         isHome: false,
         isUsers: false,
         isCharacters: true,
+        isSkills: false,
+        isSpecific: true
+      },
+    });
+  }
+
+});
+
+
+router.get('/skills', function(req, res) {
+
+  if(!req.isAuthenticated()){
+    res.redirect('/account/login');
+  }
+  else if(!req.user.isAdmin){
+    res.redirect('/');
+  }
+  else{
+    res.render('console', {
+      isAuthenticated: req.isAuthenticated(),
+      user: req.user,
+      context: {
+        type: "Skills",
+        payload: [],
+        isHome: false,
+        isUsers: false,
+        isCharacters: false,
+        isSkills: true,
+        isSpecific: false
+      },
+    });
+  }
+
+});
+
+router.get('/skills/:skillId', function(req, res) {
+
+  if(!req.isAuthenticated()){
+    res.redirect('/account/login');
+  }
+  else if(!req.user.isAdmin){
+    res.redirect('/');
+  }
+  else{
+    res.render('console', {
+      isAuthenticated: req.isAuthenticated(),
+      user: req.user,
+      context: {
+        type: "Skills",
+        payload: {},
+        isHome: false,
+        isUsers: false,
+        isCharacters: false,
+        isSkills: true,
         isSpecific: true
       },
     });

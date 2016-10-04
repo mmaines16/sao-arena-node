@@ -1,0 +1,6 @@
+Currently have console and main layout mostly done. This db includes:
+
+users collection    (10/4/2016)
+
+static collection   (10/4/2016)
+  > energyList      (10/4/2016)
