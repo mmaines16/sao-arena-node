@@ -1,0 +1,69 @@
+<div>
+  <div id="breadcrum-container" class="row breadcrum-container">
+    <nav class="breadcrumb">
+      <a {{#if context.isHome}} class="breadcrumb-item active" {{else}} class="breadcrumb-item"{{/if}} href="/console">Home</a> {{#if context.isHome}}{{else}}<span>/</span>{{/if}}
+      {{#if context.isUsers}}
+        <a {{#if context.isSpecific}} class="breadcrumb-item" {{else}} class="breadcrumb-item active"{{/if}} href="/console/users">Users</a> {{#if context.isSpecific}}<span>/</span>{{/if}}
+        {{#if context.isSpecific}}
+        <span {{#if context.isSpecific}} class="breadcrumb-item active" {{else}} class="breadcrumb-item"{{/if}}>{{context.payload.username}}</span>
+        {{/if}}
+      {{/if}}
+      {{#if context.isCharacters}}
+        <a {{#if context.isSpecific}} class="breadcrumb-item" {{else}} class="breadcrumb-item active"{{/if}} href="/console/characters">Characters</a> {{#if context.isSpecific}}<span>/</span>{{/if}}
+        {{#if context.isSpecific}}
+        <span {{#if context.isSpecific}} class="breadcrumb-item active" {{else}} class="breadcrumb-item"{{/if}}>Specific Character</span>
+        {{/if}}
+      {{/if}}
+    </nav>
+  </div>
+
+  <div class="row collection-list">
+    <div class="col-lg-2">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h4>Edit Collection</h4>
+        </div>
+        <div class="panel-body">
+          <ul>
+            <li><a href="/console/users">Users</a></li>
+            <li><a href="/console/characters">Characters</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-10">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          {{context.type}} {{#if isSpecific}}(specific view){{/if}}
+        </div>
+        <div class="panel">
+          {{#if context.isUsers}}
+            {{#if context.isSpecific}}
+              <div class="userEdit">
+                <h1>{{context.payload.username}}</h1>
+              </div>
+            {{else}}
+              <ul>
+                {{#each context.payload}}
+                <li><a href="/console/users/{{this.username}}">{{this.username}}</a></li>
+                {{/each}}
+              </ul>
+            {{/if}}
+          {{/if}}
+
+          {{#if isCharacters}}
+            {{#if context.isSpecific}}
+              {{context.content.payload}}
+            {{else}}
+              {{context.content.payload}}
+            {{/if}}
+          {{/if}}
+
+          (content)
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

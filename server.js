@@ -13,6 +13,7 @@ var session = require('express-session');
 var indexRoutes = require('./routes/index');
 var accountRoutes = require('./routes/account');
 var apiRoutes = require('./routes/api');
+var consoleRoutes = require('./routes/console');
 
 //import all mongoose models
 var User = require('./models/user');
@@ -29,6 +30,7 @@ server.set('views', path.join(__dirname, 'views'));
 
 //server static files
 server.use(express.static('public'));
+server.use(express.static('media'));
 
 //Middleware Setup
 
@@ -63,6 +65,7 @@ if('development' == server.get('env')){
 server.use('/', indexRoutes);
 server.use('/api', apiRoutes);
 server.use('/account', accountRoutes);
+server.use('/console', consoleRoutes);
 
 
 //Start Listening for requests

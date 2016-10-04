@@ -24,6 +24,11 @@ router.post('/login', passport.authenticate('local', {successRedirect: '/'}), fu
 
 });
 
+router.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
+});
+
 router.get('/register', function(req, res) {
   res.render('register', {error: false});
 });
